@@ -1,34 +1,32 @@
-# 🛍️ Mi Tienda Online
+# 🛒 Mi Tienda Online - Etapa 4
 
-Este repositorio contiene la segunda etapa del proyecto de ecommerce para la materia Aplicaciones Web.
+En esta etapa se implementaron funcionalidades clave que transforman la tienda en una experiencia interactiva real para el usuario.
 
-## ✅ Contenido
+## ✅ Funcionalidades desarrolladas
 
-- Maquetado completo en HTML5
-- Estilos aplicados con CSS3
-- Navegación entre páginas: Home, Login, Registro, Productos
-- Formulario de registro funcional (nombre, apellido, email, contraseña, fecha)
-- Navbar estilizado
-- Prototipo de card de producto con imagen y botón
-- Logo propio y diseño atractivo
+- ✅ **Carga dinámica de productos desde JSON** usando `fetch()`.
+- ✅ **Visualización de productos por categoría** en `tienda.html`.
+- ✅ **Carrusel en `index.html`** con desplazamiento horizontal y navegación por flechas.
+- ✅ **Botones de cantidad (+ y –)** en cada producto.
+- ✅ **Carrito de compras individual por usuario** usando `localStorage`.
+- ✅ **Asociación de productos al usuario activo**.
+- ✅ **Persistencia del carrito por sesión**.
+- ✅ **Mensajes de alerta al agregar productos**.
 
-## 🎨 Tecnologías utilizadas
+## 📁 Archivos destacados
 
-- HTML5
-- CSS3 (custom)
-- Git y GitHub
-- Live Server (para desarrollo local)
-- GitHub Pages (para despliegue)
+- `data/productos.json`: contiene los productos organizados por categoría.
+- `js/cards.js`: carga los productos en la tienda, controla cantidades y agrega al carrito.
+- `js/tienda.js`: lógica específica para `tienda.html`.
+- `index.html`: incluye carrusel de productos destacados.
+- `css/estilos.css`: mejoras visuales y estructura del carrusel.
+- `img/productos/`: nuevas imágenes categorizadas.
 
-## 🚀 Ver online
+## 💻 Cómo ver esta etapa
 
-Accedé al sitio publicado en GitHub Pages desde el siguiente link:
+1. Clonar el repositorio y cambiar de rama:
 
-👉 [https://danielmoy4.github.io/mi-tienda-online-etapa2/](https://danielmoy4.github.io/mi-tienda-online-etapa2/)
-
-## 🛠️ Cómo ejecutarlo localmente
-
-1. Cloná el repositorio:
-
-```bash
-git clone https://github.com/danielmoy4/mi-tienda-online-etapa2.git
+   ```bash
+   git clone https://github.com/danielmoy4/mi-tienda-online.git
+   cd mi-tienda-online
+   git checkout etapa4
