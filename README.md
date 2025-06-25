@@ -1,34 +1,20 @@
-# 🛍️ Mi Tienda Online
+# 🛍️ Mi Tienda Online - Etapa 2
 
-Este repositorio contiene la segunda etapa del proyecto de ecommerce para la materia Aplicaciones Web.
+En esta etapa desarrollamos la estructura básica del sitio web de la tienda.
 
-## ✅ Contenido
+## 🔧 Funcionalidades implementadas
 
-- Maquetado completo en HTML5
-- Estilos aplicados con CSS3
-- Navegación entre páginas: Home, Login, Registro, Productos
-- Formulario de registro funcional (nombre, apellido, email, contraseña, fecha)
-- Navbar estilizado
-- Prototipo de card de producto con imagen y botón
-- Logo propio y diseño atractivo
+- Página de inicio (`index.html`) con presentación del proyecto.
+- Página de **registro** de usuario.
+- Página de **login** con validación básica.
+- Navegación inicial entre páginas.
+- Estructura de carpetas y archivos base.
 
-## 🎨 Tecnologías utilizadas
+## 🚀 Cómo probar
 
-- HTML5
-- CSS3 (custom)
-- Git y GitHub
-- Live Server (para desarrollo local)
-- GitHub Pages (para despliegue)
+1. Clonar el repositorio:
 
-## 🚀 Ver online
-
-Accedé al sitio publicado en GitHub Pages desde el siguiente link:
-
-👉 [https://danielmoy4.github.io/mi-tienda-online-etapa2/](https://danielmoy4.github.io/mi-tienda-online-etapa2/)
-
-## 🛠️ Cómo ejecutarlo localmente
-
-1. Cloná el repositorio:
-
-```bash
-git clone https://github.com/danielmoy4/mi-tienda-online-etapa2.git
+   ```bash
+   git clone https://github.com/danielmoy4/mi-tienda-online.git
+   cd mi-tienda-online
+   git checkout etapa2
