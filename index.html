@@ -8,8 +8,8 @@
   <link rel="stylesheet" href="css/estilos.css" />
 </head>
 <body>
-  <!-- Aquí se inyectará el navbar desde navbar.js -->
-  <div id="navbar-container"></div>
+  <!-- Navbar dinámico -->
+  <div id="navbar"></div>
 
   <main>
     <section class="hero">
@@ -28,7 +28,7 @@
         <div class="carrusel-container">
           <button class="carrusel-btn izquierda">&#10094;</button>
           <div class="carrusel-items">
-            <!-- Aquí se insertarán las cards dinámicamente -->
+            <!-- Cards dinámicas aquí -->
           </div>
           <button class="carrusel-btn derecha">&#10095;</button>
         </div>
@@ -40,57 +40,56 @@
     <p>&copy; 2025 Bear Tech</p>
   </footer>
 
-  <!-- Scripts al final para mejor carga -->
-  <script src="js/navbar-data.js"></script>
-  <script src="js/navbar.js"></script>
+  <!-- Scripts -->
+  <script src="js/navbar.js" defer></script>
 
-<style>
-  .carrusel {
-    max-width: 90%;
-    margin: 0 auto;
-    text-align: center;
-    padding: 2rem 0;
-  }
+  <style>
+    .carrusel {
+      max-width: 90%;
+      margin: 0 auto;
+      text-align: center;
+      padding: 2rem 0;
+    }
 
-  .carrusel-container {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+    .carrusel-container {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-  .carrusel-items {
-    display: flex;
-    transition: transform 0.4s ease-in-out;
-    width: auto; /* permite que crezca según el contenido */
-  }
+    .carrusel-items {
+      display: flex;
+      transition: transform 0.4s ease-in-out;
+      width: auto;
+    }
 
-  .carrusel-items .card {
-    flex: 0 0 300px;
-    margin: 0 10px;
-    background-color: white;
-    padding: 1rem;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-  }
+    .carrusel-items .card {
+      flex: 0 0 300px;
+      margin: 0 10px;
+      background-color: white;
+      padding: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
 
-  .carrusel-btn {
-    background-color: #00a884;
-    color: white;
-    font-size: 1.5rem;
-    border: none;
-    padding: 0.5rem 1rem;
-    cursor: pointer;
-    border-radius: 8px;
-    margin: 0 10px;
-    z-index: 2;
-  }
+    .carrusel-btn {
+      background-color: #00a884;
+      color: white;
+      font-size: 1.5rem;
+      border: none;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      border-radius: 8px;
+      margin: 0 10px;
+      z-index: 2;
+    }
 
-  .carrusel-btn:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
-</style>
+    .carrusel-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  </style>
 
   <script>
     const cards = [
@@ -137,13 +136,12 @@
     function mover(direccion) {
       const total = cards.length;
       const visible = 3;
-      const cardWidth = container.querySelector(".card").offsetWidth + 20; // ancho + margen
+      const cardWidth = container.querySelector(".card").offsetWidth + 20;
 
       if (direccion === 'izquierda' && current > 0) current--;
       if (direccion === 'derecha' && current < total - visible) current++;
       container.style.transform = `translateX(-${current * cardWidth}px)`;
     }
-
 
     document.addEventListener("DOMContentLoaded", () => {
       renderCarrusel();

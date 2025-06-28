@@ -2,7 +2,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const contenedor = document.getElementById("productos");
   const inputBuscar = document.getElementById("buscador");
   const selectCategoria = document.getElementById("filtro-categoria");
-  const formBusqueda = document.getElementById("form-busqueda");
 
   const usuarioActivo = JSON.parse(localStorage.getItem("usuarioActivo"));
   if (!usuarioActivo) {
@@ -24,10 +23,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
   function renderizarProductos(lista) {
-    contenedor.innerHTML = "<h2>Productos</h2>";
+    contenedor.innerHTML = "";
 
     const categorias = ["placas", "monitores", "mouses", "procesadores"];
-    let productosMostrados = 0;
 
     categorias.forEach((categoria) => {
       const productosFiltrados = lista.filter(p => p.categoria === categoria);
@@ -43,27 +41,16 @@ document.addEventListener("DOMContentLoaded", () => {
         productosFiltrados.forEach((producto) => {
           const card = crearCardProducto(producto);
           contenedorCategoria.appendChild(card);
-          productosMostrados++;
         });
 
         contenedor.appendChild(contenedorCategoria);
-        contenedor.appendChild(document.createElement("hr"));
       }
     });
-
-    if (productosMostrados === 0) {
-      const mensaje = document.createElement("p");
-      mensaje.textContent = "No se encontraron productos que coincidan con tu búsqueda.";
-      mensaje.style.textAlign = "center";
-      mensaje.style.fontSize = "1.2rem";
-      mensaje.style.padding = "1rem";
-      contenedor.appendChild(mensaje);
-    }
   }
 
   function filtrarProductos() {
-    const texto = inputBuscar?.value.toLowerCase() || "";
-    const categoria = selectCategoria?.value || "todos";
+    const texto = inputBuscar.value.toLowerCase();
+    const categoria = selectCategoria.value;
 
     const filtrados = todosLosProductos.filter(prod => {
       const coincideNombre = prod.nombre.toLowerCase().includes(texto);
@@ -74,15 +61,8 @@ document.addEventListener("DOMContentLoaded", () => {
     renderizarProductos(filtrados);
   }
 
-  // Eventos
-  if (inputBuscar) inputBuscar.addEventListener("input", filtrarProductos);
-  if (selectCategoria) selectCategoria.addEventListener("change", filtrarProductos);
-  if (formBusqueda) {
-    formBusqueda.addEventListener("submit", (e) => {
-      e.preventDefault();
-      filtrarProductos();
-    });
-  }
+  inputBuscar.addEventListener("input", filtrarProductos);
+  selectCategoria.addEventListener("change", filtrarProductos);
 });
 
 function nombreCategoria(categoria) {

@@ -7,9 +7,11 @@
   <link rel="stylesheet" href="css/estilos.css">
 </head>
 <body>
-  <div id="navbar-container"></div>
+  <!-- Navbar generado dinámicamente -->
+  <div id="navbar"></div>
 
   <main>
+    <h1>Tienda</h1>
     <div id="productos"></div>
   </main>
 
@@ -17,20 +19,8 @@
     <p>&copy; 2025 Bear Tech</p>
   </footer>
 
-  <script src="js/navbar-data.js"></script>
-  <script>
-    fetch("js/navbar.js")
-      .then(res => res.text())
-      .then(code => {
-        const script = document.createElement("script");
-        script.innerHTML = code;
-        document.body.appendChild(script);
-
-        // Una vez que navbar se carga, cargamos cards.js
-        const cardsScript = document.createElement("script");
-        cardsScript.src = "js/cards.js";
-        document.body.appendChild(cardsScript);
-      });
-  </script>
+  <!-- Scripts con defer para que carguen después del DOM -->
+  <script src="js/navbar.js" defer></script>
+  <script src="js/cards.js" defer></script>
 </body>
 </html>

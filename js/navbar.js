@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   const usuario = JSON.parse(localStorage.getItem("usuarioActivo"));
-
   const navbarContainer = document.getElementById("navbar");
+  if (!navbarContainer) return;
 
   const header = document.createElement("header");
   const nav = document.createElement("nav");
@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const logoBox = document.createElement("div");
   logoBox.classList.add("logo-box");
-  logoBox.innerHTML = `<div class="logo">Mi Tienda</div>`;
+  logoBox.innerHTML = `<div class="logo">Bear Tech</div>`;
 
   const ul = document.createElement("ul");
   ul.classList.add("nav-links");
@@ -27,11 +27,13 @@ document.addEventListener("DOMContentLoaded", () => {
       { name: "Mis Compras", href: "compras.html" },
       { name: `Hola, ${usuario.nombre}`, href: "#", isGreeting: true },
       { name: "Perfil", href: "perfil.html" },
+      { name: getDarkModeLabel(), href: "#", isDarkToggle: true },
       { name: "Cerrar sesión", href: "#", isLogout: true }
     ];
   } else {
     enlacesFinales = [
       ...enlacesBase,
+      { name: getDarkModeLabel(), href: "#", isDarkToggle: true },
       { name: "Iniciar Sesión", href: "login.html" },
       { name: "Registrarse", href: "registro.html" }
     ];
@@ -47,14 +49,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (item.isGreeting) {
       a.style.fontWeight = "bold";
+      a.style.pointerEvents = "none";
     }
 
     if (item.isLogout) {
       a.addEventListener("click", (e) => {
         e.preventDefault();
         localStorage.removeItem("usuarioActivo");
-        sessionStorage.removeItem("isLoggedIn");
-        window.location.href = "index.html";
+        location.href = "index.html";
+      });
+    }
+
+    if (item.isDarkToggle) {
+      a.id = "toggle-theme";
+      a.addEventListener("click", (e) => {
+        e.preventDefault();
+        document.body.classList.toggle("dark-mode");
+        // Cambiar ícono y guardar estado si deseas
+        a.textContent = getDarkModeLabel();
       });
     }
 
@@ -65,42 +77,11 @@ document.addEventListener("DOMContentLoaded", () => {
   nav.appendChild(logoBox);
   nav.appendChild(ul);
   header.appendChild(nav);
+  navbarContainer.innerHTML = "";
   navbarContainer.appendChild(header);
 });
 
-document.addEventListener("DOMContentLoaded", () => {
-  fetch("navbar.html")
-    .then(res => res.text())
-    .then(data => {
-      const container = document.getElementById("navbar-container");
-      if (container) {
-        container.innerHTML = data;
-
-        // Activar modo oscuro
-        const btnTema = document.getElementById("toggle-theme");
-        if (btnTema) {
-          btnTema.addEventListener("click", () => {
-            document.body.classList.toggle("dark-mode");
-          });
-        }
-
-        // Mostrar nombre de usuario si está logueado
-        const user = JSON.parse(localStorage.getItem("usuarioActivo"));
-        if (user) {
-          const nameSpan = document.getElementById("user-name");
-          if (nameSpan) nameSpan.textContent = `Hola, ${user.nombre}`;
-        }
-
-        // Cerrar sesión
-        const logout = document.getElementById("logout-link");
-        if (logout) {
-          logout.addEventListener("click", (e) => {
-            e.preventDefault();
-            localStorage.removeItem("usuarioActivo");
-            location.href = "login.html";
-          });
-        }
-      }
-    });
-});
-
+// Función para determinar el ícono del modo
+function getDarkModeLabel() {
+  return document.body.classList.contains("dark-mode") ? "☀️ Modo Claro" : "🌙 Modo Oscuro";
+}
